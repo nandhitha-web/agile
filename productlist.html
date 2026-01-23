@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pizza Ordering System</title>
+
+<style>
+/* ===== GLOBAL ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1c1c1c, #2b2b2b);
+    color: white;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,0.85);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+nav h1 {
+    color: #32f13e;
+    font-size: 32px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav ul li {
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.85;
+}
+
+nav ul li:hover {
+    opacity: 1;
+    color: #30fad8;
+}
+
+/* ===== FILTER BAR ===== */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 25px;
+}
+
+.filter-btn {
+    padding: 10px 22px;
+    border-radius: 25px;
+    border: 2px solid #ec7de4;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn:hover {
+    background: #53ff4d;
+}
+
+/* ===== MENU GRID ===== */
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px;
+}
+
+/* ===== PIZZA CARD ===== */
+.card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: 0.4s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* ===== BADGES ===== */
+.badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #36f839;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ===== CARD CONTENT ===== */
+.content {
+    padding: 18px;
+}
+
+.content h3 {
+    font-size: 20px;
+}
+
+.rating {
+    color: gold;
+    margin: 5px 0;
+}
+
+.desc {
+    font-size: 14px;
+    opacity: 0.85;
+    margin: 8px 0;
+}
+
+/* ===== TAGS ===== */
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.15);
+}
+
+/* ===== FOOTER ===== */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4dfffc;
+}
+
+.order {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f94dff, #ff2de3);
+    color: white;
+    cursor: pointer;
+}
+
+.order:hover {
+    opacity: 0.9;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>🍕 PizzaHub</h1>
+    <ul>
+        <li>Home</li>
+        <li>Menu</li>
+        <li>Offers</li>
+        <li>Cart</li>
+    </ul>
+</nav>
+
+<div class="filters">
+    <button class="filter-btn">All</button>
+    <button class="filter-btn">Veg</button>
+    <button class="filter-btn">Non-Veg</button>
+    <button class="filter-btn">Best Sellers</button>
+</div>
+
+<div class="menu">
+
+    <div class="card">
+        <span class="badge">Best Seller</span>
+        <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3">
+        <div class="content">
+            <h3>Margherita</h3>
+            <div class="rating">★★★★★</div>
+            <p class="desc">Classic cheese with fresh basil.</p>
+
+            <div class="tags">
+                <span class="tag">Veg</span>
+                <span class="tag">Medium</span>
+                <span class="tag">Thin Crust</span>
+            </div>
+
+            <div class="card-footer">
+                <span class="price">₹199</span>
+                <button class="order">Add</button>
+            </div>
+        </div>
+    </div>
+<div class="card">
+    <span class="badge">New</span>
+    <img src="https://images.unsplash.com/photo-1548365328-8b849e6f7a3b">
+    <div class="content">
+        <h3>Farmhouse</h3>
+        <div class="rating">★★★★★</div>
+        <p class="desc">Onion, capsicum, tomato & mushrooms.</p>
+
+        <div class="tags">
+            <span class="tag">Veg</span>
+            <span class="tag">Large</span>
+            <span class="tag">Pan Crust</span>
+        </div>
+
+        <div class="card-footer">
+            <span class="price">₹269</span>
+            <button class="order">Add</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <span class="badge">Spicy</span>
+    <img src="https://images.unsplash.com/photo-1603079651244-89b90c04c6d3">
+    <div class="content">
+        <h3>Mexican Green Wave</h3>
+        <div class="rating">★★★★☆</div>
+        <p class="desc">Spicy jalapeno, capsicum & Mexican herbs.</p>
+
+        <div class="tags">
+            <span class="tag">Veg</span>
+            <span class="tag">Medium</span>
+            <span class="tag">Thin Crust</span>
+        </div>
+
+        <div class="card-footer">
+            <span class="price">₹249</span>
+            <button class="order">Add</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <span class="badge">Hot</span>
+    <img src="https://images.unsplash.com/photo-1600628422019-45d4f3b41a0c">
+    <div class="content">
+        <h3>Peri Peri Chicken</h3>
+        <div class="rating">★★★★★</div>
+        <p class="desc">Peri peri chicken with spicy sauce.</p>
+
+        <div class="tags">
+            <span class="tag">Non-Veg</span>
+            <span class="tag">Large</span>
+            <span class="tag">Cheese Burst</span>
+        </div>
+
+        <div class="card-footer">
+            <span class="price">₹329</span>
+            <button class="order">Add</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <span class="badge">Chef's Special</span>
+    <img src="https://images.unsplash.com/photo-1590947132387-155cc02f3212">
+    <div class="content">
+        <h3>Four Cheese</h3>
+        <div class="rating">★★★★★</div>
+        <p class="desc">Mozzarella, cheddar, parmesan & blue cheese.</p>
+
+        <div class="tags">
+            <span class="tag">Veg</span>
+            <span class="tag">Medium</span>
+            <span class="tag">Cheese Loaded</span>
+        </div>
+
+        <div class="card-footer">
+            <span class="price">₹289</span>
+            <button class="order">Add</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <span class="badge">Classic</span>
+    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002">
+    <div class="content">
+        <h3>Chicken Tikka</h3>
+        <div class="rating">★★★★☆</div>
+        <p class="desc">Indian-style tikka chicken & onions.</p>
+
+        <div class="tags">
+            <span class="tag">Non-Veg</span>
+            <span class="tag">Regular</span>
+            <span class="tag">Hand Tossed</span>
+        </div>
+
+        <div class="card-footer">
+            <span class="price">₹319</span>
+            <button class="order">Add</button>
+        </div>
+    </div>
+</div>
+
+    <div class="card">
+        <span class="badge">Popular</span>
+        <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be1c">
+        <div class="content">
+            <h3>Pepperoni</h3>
+            <div class="rating">★★★★☆</div>
+            <p class="desc">Spicy pepperoni & melted cheese.</p>
+
+            <div class="tags">
+                <span class="tag">Non-Veg</span>
+                <span class="tag">Large</span>
+                <span class="tag">Cheese Burst</span>
+            </div>
+
+            <div class="card-footer">
+                <span class="price">₹299</span>
+                <button class="order">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1601924577970-7f3b8a4e5b15">
+        <div class="content">
+            <h3>Veggie Delight</h3>
+            <div class="rating">★★★★☆</div>
+            <p class="desc">Loaded with fresh vegetables.</p>
+
+            <div class="tags">
+                <span class="tag">Veg</span>
+                <span class="tag">Regular</span>
+                <span class="tag">Pan Crust</span>
+            </div>
+
+            <div class="card-footer">
+                <span class="price">₹229</span>
+                <button class="order">Add</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Pizza Ordering System | Advanced UI
+</footer>
+
+</body>
+</html>
